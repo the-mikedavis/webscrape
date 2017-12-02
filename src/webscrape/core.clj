@@ -5,6 +5,12 @@
   (:refer-clojure :exclude [class]) ; don't need class keyword
   (:gen-class))
 
+(defn parse-csv
+  "Read in the values from a csv file"
+  [filename]
+  (map #(string/split % #",")
+       (string/split (slurp filename) #"\n")))
+
 (defn url->dom
   "Gets the DOM of a url's response."
   [url]
