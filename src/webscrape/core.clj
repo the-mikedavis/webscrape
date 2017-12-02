@@ -23,6 +23,5 @@
    (map println (extract (url->dom "http://news.ycombinator.com/")
                          "a" "storylink")))
   ([url tag class]
-   (let [captures (extract (url->dom url)
-                           tag class)]
-    (map println captures))))
+   (map println (extract (url->dom url)
+                         tag class))))
