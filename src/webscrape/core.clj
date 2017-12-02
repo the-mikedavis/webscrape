@@ -5,13 +5,13 @@
   (:refer-clojure :exclude [class]) ; don't need class keyword
   (:gen-class))
 
-(defn ^:dynamic url->dom
+(defn url->dom
   "Gets the DOM of a url's response."
   [url]
   (html/html-snippet
     (:body @(http/get url {:insecure? true}))))
 
-(defn ^:dynamic extract
+(defn extract
   "Extract from dom the tags with classes. Creates a lazy-seq."
   [dom tag class]
   (map (comp #(string/join " " %) :content)

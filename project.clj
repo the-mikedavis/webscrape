@@ -4,8 +4,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [enlive "1.1.6"]
-                 [http-kit "2.1.18"]
-                 [org.clojure/tools.trace "0.7.9"]]
+                 [http-kit "2.1.18"]]
   :main ^:skip-aot webscrape.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
