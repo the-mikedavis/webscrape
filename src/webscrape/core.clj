@@ -27,14 +27,15 @@
 (defn print-list
   "Print out a list line by line."
   [list-arg]
-  (map println list-arg))
+  (println (string/join "\n" list-arg))
+  (println))
 
 (defn -main
   ([]
    (map println (extract (url->dom "http://news.ycombinator.com/")
                          "a.storylink")))
   ([filename]
-   (pmap #(print-list (apply extract %))
-         (parse-csv filename)))
+   (doall (pmap #(print-list (apply extract %))
+         (parse-csv filename))))
   ([url identifier]
    (print-list (extract url identifier))))
