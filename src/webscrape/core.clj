@@ -38,9 +38,7 @@
                          "a" "storylink")))
   ([filename]
    (doseq [visit (parse-csv filename)]
-     (print-list (extract (first visit)
-                         (second visit)
-                         (nth visit 2)))))
+     (print-list (apply extract visit))))
   ([url tag class]
    (print-list (extract url)
                         tag class)))
