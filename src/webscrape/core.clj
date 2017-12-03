@@ -20,12 +20,10 @@
 
 (defn extract
   "Extract from dom the tags with classes."
-  ([filename]
-   true)
-  ([url tag class]
+  [url tag class]
    (map (comp #(string/join " " %) :content)
         (html/select (url->dom url)
-                     [(keyword (str tag "." class))]))))
+                     [(keyword (str tag "." class))])))
 
 (defn print-list
   "Print out a list line by line."
