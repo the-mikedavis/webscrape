@@ -8,9 +8,8 @@
 (defn parse-csv
   "Read in the values from a csv file"
   [filename]
-  (remove nil?
-          (map #(string/split % #",")
-               (string/split (slurp filename) #"\n"))))
+  (map #(string/split % #",")
+       (string/split (slurp filename) #"\n")))
 
 (defn url->dom
   "Gets the DOM of a url's response."
@@ -35,7 +34,7 @@
    (map println (extract (url->dom "http://news.ycombinator.com/")
                          "a.storylink")))
   ([filename]
-   (doseq [visit (parse-csv filename)]
-     (print-list (apply extract visit))))
+   (pmap #(print-list (apply extract %))
+         (parse-csv filename)))
   ([url identifier]
-   (print-list (extract url)identifier)))
+   (print-list (extract url identifier))))
