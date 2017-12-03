@@ -20,10 +20,10 @@
 
 (defn extract
   "Extract from dom the tags with classes."
-  [url tag class]
+  [url identifier]
    (map (comp #(string/join " " %) :content)
         (html/select (url->dom url)
-                     [(keyword (str tag "." class))])))
+                     [(keyword identifier)])))
 
 (defn print-list
   "Print out a list line by line."
@@ -33,10 +33,9 @@
 (defn -main
   ([]
    (map println (extract (url->dom "http://news.ycombinator.com/")
-                         "a" "storylink")))
+                         "a.storylink")))
   ([filename]
    (doseq [visit (parse-csv filename)]
      (print-list (apply extract visit))))
-  ([url tag class]
-   (print-list (extract url)
-                        tag class)))
+  ([url identifier]
+   (print-list (extract url)identifier)))
